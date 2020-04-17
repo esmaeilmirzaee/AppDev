@@ -22,7 +22,6 @@ class DatabaseManager {
     }
     
     static func getChatInfo(completion: @escaping ([(String, String)]?) -> Void) {
-//        print("SOMETHINGSOMETHINGSOMETHINGSOMETHING---\(System.currentUser!)")
         let user = System.currentUser!.replacingOccurrences(of: ".", with: "")
         ref.child("users/\(user)/chats").observeSingleEvent(of: .value, with: { snapshot in
             if let infoDict = snapshot.value as? [String: Any] {
@@ -85,11 +84,13 @@ class DatabaseManager {
     static func addFriend(friend: String, completion: @escaping (Bool) -> Void) {
         ref.child("chats").childByAutoId().updateChildValues(["messages": true]) { (error, reference) in
             if let _ = error {
+                print("Not able to add friend")
                 completion(false)
                 return
             }
-            let chatId = reference.key as! String
+            let chatId = reference.key!
             guard let currentUser = System.currentUser?.replacingOccurrences(of: ".", with: "") else { return }
+//            let currentUser = System.currentUser
             let updates = [
                 "user/\(friend)/chats": [chatId: currentUser],
                 "user/\(currentUser)/chats": [chatId: friend]

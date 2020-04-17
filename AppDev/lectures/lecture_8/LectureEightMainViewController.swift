@@ -18,7 +18,7 @@ class LectureEightMainViewController: UIViewController {
         
         title = "Lecture 8"
         view.backgroundColor = .white
-        
+        navigationController?.navigationBar.prefersLargeTitles = false
         GIDSignIn.sharedInstance()?.presentingViewController = self
         let chatsViewController = ChatsViewController()
         navigationController?.pushViewController(chatsViewController, animated: true)

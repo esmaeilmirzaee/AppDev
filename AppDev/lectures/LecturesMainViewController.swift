@@ -18,6 +18,7 @@ class LecturesMainViewController: UIViewController {
     var lectureFiveButton: UIButton!
     var lectureSixButton: UIButton!
     var lectureEightButton: UIButton!
+    var lectureNineButton: UIButton!
     
     let primaryColour: CGColor = .init(srgbRed: 0.05, green: 0.63, blue: 0.94, alpha: 1.000)
     let secondaryColour: UIColor = UIColor(red: 0.05, green: 0.673, blue: 0.863, alpha: 1.0)
@@ -27,6 +28,19 @@ class LecturesMainViewController: UIViewController {
         
         title = "Lectures"
         view.backgroundColor = .white
+        navigationController?.navigationBar.prefersLargeTitles = false
+        
+        lectureTwoButton = UIButton()
+        lectureTwoButton.setTitle("Lecture 2", for: .normal)
+        lectureTwoButton.setTitleColor(secondaryColour, for: .normal)
+        lectureTwoButton.backgroundColor = .clear
+        lectureTwoButton.layer.masksToBounds = true
+        lectureTwoButton.layer.borderWidth = 1
+        lectureTwoButton.layer.borderColor = primaryColour
+        lectureTwoButton.setTitleShadowColor(.darkGray, for: .normal)
+        lectureTwoButton.addTarget(self, action: #selector(lectureTwoSelector), for: .touchUpInside)
+        
+        view.addSubview(lectureTwoButton)
         
         lectureThreeButton = UIButton()
         lectureThreeButton.translatesAutoresizingMaskIntoConstraints = false
@@ -89,12 +103,30 @@ class LecturesMainViewController: UIViewController {
         
         view.addSubview(lectureEightButton)
         
+        lectureNineButton = UIButton()
+        lectureNineButton.setTitle("Lecture 9", for: .normal)
+        lectureNineButton.setTitleColor(secondaryColour, for: .normal)
+        lectureNineButton.layer.masksToBounds = true
+        lectureNineButton.layer.borderWidth = 1
+        lectureNineButton.layer.borderColor = primaryColour
+        lectureNineButton.setTitleShadowColor(.darkGray, for: .normal)
+        lectureNineButton.addTarget(self, action: #selector(lectureNineSelector), for: .touchUpInside)
+        
+        view.addSubview(lectureNineButton)
+        
         setupConstraint()
     }
     
     func setupConstraint() {
+        
+        lectureTwoButton.snp.makeConstraints { (make) in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
+            make.centerX.equalTo(view.safeAreaLayoutGuide.snp.centerX)
+            make.width.equalTo(180)
+        }
+        
         NSLayoutConstraint.activate([
-            lectureThreeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            lectureThreeButton.topAnchor.constraint(equalTo: lectureTwoButton.bottomAnchor, constant: 16),
             lectureThreeButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             lectureThreeButton.widthAnchor.constraint(equalToConstant: 180)
         ])
@@ -123,6 +155,18 @@ class LecturesMainViewController: UIViewController {
             make.leading.equalTo(lectureSixButton.snp.leading)
             make.trailing.equalTo(lectureSixButton.snp.trailing)
         }
+        
+        lectureNineButton.snp.makeConstraints { (make) in
+            make.top.equalTo(lectureEightButton.snp.bottom).offset(16)
+            make.leading.equalTo(lectureEightButton.snp.leading)
+            make.trailing.equalTo(lectureEightButton.snp.trailing)
+        }
+        
+    }
+    
+    @objc func lectureTwoSelector() {
+        let lectureTwoViewController = LectureTwoMainViewController()
+        present(lectureTwoViewController, animated: true, completion: nil)
     }
 
     @objc func lectureThreeSelector() {
@@ -149,4 +193,10 @@ class LecturesMainViewController: UIViewController {
         let lectureEightMainViewController = LectureEightMainViewController()
         navigationController?.pushViewController(lectureEightMainViewController, animated: true)
     }
+    
+    @objc func lectureNineSelector() {
+        let lectureNineMainViewController = LectureNineMainViewController()
+        navigationController?.pushViewController(lectureNineMainViewController, animated: true)
+    }
+    
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InformatioAppViewController: UIViewController {
+class LectureTwoMainViewController: UIViewController {
 
     var imageView: UIImageView!
     var nameButton: UIButton!

@@ -61,6 +61,7 @@ class ChatViewController: UIViewController {
     }
     
     func scrollToBottom(animated: Bool) {
+        if chat.messages.isEmpty { return }
         messagesTableView.scrollToRow(at: IndexPath(row: chat.messages.count - 1, section: 0), at: .bottom, animated: animated)
     }
     
@@ -123,21 +124,22 @@ class ChatViewController: UIViewController {
     }
     
     func setupConstraints(keyboardHeight: CGFloat) {
-//        let sendButtonWidth = sendButtonTitle.wid
-//            sendButtonTitle.width(withConstrainedHeight: sendButtonHeight, font: sendButton.titleLabel!.font)
-//        sendButtonWidth.snp.remakeConstraints { make in
-//            make.width.equalTo(sendButtonWidth)
-//            make.height.equalTo(sendButtonHeight)
-//            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(keyboardHeight)
-//            make.right.equalToSuperView().inset(Constants.padding)
-//        }
-//        
-//        messageTextField.snp.remakeConstraints { make in
-//            make.width.equalTo(view.frame.width - Constants.padding * 3 - sendButtonWidth)
-//            make.left.equalToSuperview().offset(Constants.padding)
-//            make.height.equalTo(sendButton)
-//            make.bottom.equalTo(sendButton)
-//        }
+        let sendButtonWidth = (sendButton.titleLabel?.intrinsicContentSize.width)!
+        
+        sendButton.snp.remakeConstraints { make in
+            make.right.equalToSuperview().inset(Constants.padding)
+            make.width.equalTo(sendButtonWidth)
+            make.height.equalTo(sendButtonHeight)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(keyboardHeight)
+        }
+        
+        messageTextField.snp.remakeConstraints { make in
+            make.width.equalTo(view.frame.width - Constants.padding * 3 - sendButtonWidth)
+            make.left.equalToSuperview().offset(Constants.padding)
+            make.height.equalTo(sendButton)
+            make.bottom.equalTo(sendButton)
+        }
+        
         
         border.snp.remakeConstraints { (make) in
             make.width.equalToSuperview()
@@ -153,11 +155,13 @@ class ChatViewController: UIViewController {
     }
     
     func bubbleType(message: Message) -> BubbleType {
-        let oneLineWidth: CGFloat = 100
+        let tempButton = UIButton()
+        tempButton.setTitle(message.body, for: .normal)
+        let oneLineWidth: CGFloat = tempButton.intrinsicContentSize.width
         if oneLineWidth <= view.frame.width / 2 {
             return .singleLine(width: oneLineWidth)
         }
-        let height: CGFloat = 100
+        let height: CGFloat = tempButton.intrinsicContentSize.height
         return .multiLine(height: height)
     }
 }

@@ -22,7 +22,7 @@ class ChatsViewController: UIViewController {
         GIDSignIn.sharedInstance()?.presentingViewController = self
         title = "Chats"
         view.backgroundColor = .white
-        navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed))
         
         setupViews()
@@ -31,7 +31,8 @@ class ChatsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
+        
         if let chatsTableView = chatsTableView {
             chatsTableView.reloadData()
             listenForNewMessages()
@@ -56,6 +57,7 @@ class ChatsViewController: UIViewController {
     
     func getChats() {
         DatabaseManager.getChatInfo { info in
+            
             if let info = info {
                 DatabaseManager.getChats(info: info, completion: { (gotChats) in
                     if gotChats {
@@ -68,6 +70,7 @@ class ChatsViewController: UIViewController {
                 }
             })
             } else {
+                print("Not able to retrieve chats")
                 self.alertError()
             }
         }

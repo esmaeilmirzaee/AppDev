@@ -19,6 +19,7 @@ class HandoutsViewController: UIViewController {
         super.viewDidLoad()
         title = "Handouts"
         view.backgroundColor = .white
+        navigationController?.navigationBar.prefersLargeTitles = false
         
         projectOneButton = UIButton()
         projectOneButton.translatesAutoresizingMaskIntoConstraints = false

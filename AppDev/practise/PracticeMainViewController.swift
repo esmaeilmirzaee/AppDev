@@ -17,6 +17,7 @@ class PracticeMainViewController: UIViewController {
         super.viewDidLoad()
         title = "Practices"
         view.backgroundColor = .white
+        navigationController?.navigationBar.prefersLargeTitles = false
         
         noThreeButton = UIButton()
         noThreeButton.translatesAutoresizingMaskIntoConstraints = false

@@ -11,6 +11,19 @@ import Firebase
 import FirebaseAuth
 import GoogleSignIn
 
+/*
+ Lecture 9:
+ TODO: Create the UserDefaults object
+ */
+let userDefaults = UserDefaults.standard
+
+/*
+ Lecture 9:
+ TODO: JSONEncoder & JSONDecoder
+ */
+let encoder = JSONEncoder()
+let decoder = JSONDecoder()
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
@@ -26,9 +39,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance()?.delegate = self
         
         if let windowScene = scene as? UIWindowScene {
+            /*
+             Lecture 9:
+             TODO: Register default values
+             */
+            userDefaults.register(defaults: [
+                "favourites": [Data]()
+            ])
+            
             let window = UIWindow(windowScene: windowScene)
             let viewController = UINavigationController(rootViewController: AppViewController())
-//            window.rootViewController = viewController
+            
+            
+            
             window.rootViewController = viewController
             self.window = window
             window.makeKeyAndVisible()

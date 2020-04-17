@@ -13,8 +13,6 @@ import GoogleSignIn
 
 class AppViewController: UIViewController {
 
-    
-    var informationAppViewControllerButton: UIButton!
     var lecturesButton: UIButton!
     var practiseButton: UIButton!
     var handoutButton: UIButton!
@@ -24,28 +22,15 @@ class AppViewController: UIViewController {
 //        view.backgroundColor = UIColor(red: 0.15, green: 0.10, blue: 0.20, alpha: 1)
         title = "Cornell AppDev iOS Training"
         view.backgroundColor = .white
-        
-        
-        informationAppViewControllerButton = UIButton()
-        informationAppViewControllerButton.translatesAutoresizingMaskIntoConstraints = false
-//        informationAppViewControllerButton.setImage(UIImage.init(systemName: "info"), for: .normal)
-        informationAppViewControllerButton.setImage(UIImage(systemName: "info"), for: .normal)
-        informationAppViewControllerButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        informationAppViewControllerButton.setTitleShadowColor(.white, for: .normal)
-        informationAppViewControllerButton.setTitleColor(.white, for: .normal)
-        informationAppViewControllerButton.layer.cornerRadius = 15
-        informationAppViewControllerButton.clipsToBounds = true
-        informationAppViewControllerButton.layer.borderWidth = 1.0
-        informationAppViewControllerButton.layer.borderColor = .init(srgbRed: 1.0, green: 1.0, blue: 1.0, alpha: 1)
-        informationAppViewControllerButton.backgroundColor = .clear
-        informationAppViewControllerButton.addTarget(self, action: #selector(informationAppViewControllerButtonPressed), for: .touchUpInside)
-        view.addSubview(informationAppViewControllerButton)
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.init(systemName: "info"), style: .done, target: self, action: #selector(infoAppSelector))
         
         lecturesButton = UIButton()
         lecturesButton.translatesAutoresizingMaskIntoConstraints = false
         lecturesButton.setTitle("Courses", for: .normal)
         lecturesButton.setTitleColor(.black, for: .normal)
-        lecturesButton.backgroundColor = .white
+        lecturesButton.backgroundColor = .systemFill
+        lecturesButton.layer.cornerRadius  = 10
         lecturesButton.addTarget(self, action: #selector(lectureThreeButtonPressed), for: .touchUpInside)
         view.addSubview(lecturesButton)
         
@@ -53,19 +38,19 @@ class AppViewController: UIViewController {
         practiseButton.translatesAutoresizingMaskIntoConstraints = false
         practiseButton.setTitle("Practise", for: .normal)
         practiseButton.setTitleColor(.black, for: .normal)
-        practiseButton.backgroundColor = .white
+        practiseButton.backgroundColor = .systemTeal
+        practiseButton.layer.cornerRadius = 10
         practiseButton.addTarget(self, action: #selector(practiseViewControllerFunc), for: .touchUpInside)
         view.addSubview(practiseButton)
         
         handoutButton = UIButton()
         handoutButton.translatesAutoresizingMaskIntoConstraints = false
         handoutButton.setTitle("Handouts", for: .normal)
-//        handoutButton.showsTouchWhenHighlighted = true
         handoutButton.layer.borderColor = .init(srgbRed: 1.00000, green: 1.0000, blue: 1.00000, alpha: 1.0000)
-        handoutButton.layer.cornerRadius = 0.7
+        handoutButton.backgroundColor = .systemGray
+        handoutButton.layer.cornerRadius = 10
         handoutButton.layer.borderWidth = 1
         handoutButton.setTitleShadowColor(.gray, for: .normal)
-//        handoutButton.contentEdgeInsets = UIEdgeInsets(top: -10, left: -1, bottom: -1, right: -1)
         
         handoutButton.addTarget(self, action: #selector(openHandouts), for: .touchUpInside)
         view.addSubview(handoutButton)
@@ -74,37 +59,31 @@ class AppViewController: UIViewController {
     }
     
     func setupConstraints() {
-        NSLayoutConstraint.activate([
-            informationAppViewControllerButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
-            informationAppViewControllerButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
-            informationAppViewControllerButton.widthAnchor.constraint(equalToConstant: 30),
-            informationAppViewControllerButton.heightAnchor.constraint(equalToConstant: 30)
-        ])
         
         NSLayoutConstraint.activate([
             lecturesButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             lecturesButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            lecturesButton.widthAnchor.constraint(equalToConstant: 120),
-            lecturesButton.heightAnchor.constraint(equalToConstant: 25)
+            lecturesButton.widthAnchor.constraint(equalToConstant: 180),
+            lecturesButton.heightAnchor.constraint(equalToConstant: 40)
         ])
         
         NSLayoutConstraint.activate([
             practiseButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             practiseButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8),
-            practiseButton.widthAnchor.constraint(equalToConstant: 94),
+            practiseButton.widthAnchor.constraint(equalToConstant: 180),
             practiseButton.heightAnchor.constraint(equalToConstant: 40)
         ])
         
         NSLayoutConstraint.activate([
             handoutButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             handoutButton.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-            handoutButton.widthAnchor.constraint(equalToConstant: 100),
-            handoutButton.heightAnchor.constraint(equalToConstant: 25)
+            handoutButton.widthAnchor.constraint(equalToConstant: 180),
+            handoutButton.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
     
-    @objc func informationAppViewControllerButtonPressed() {
-        let informationAppViewController = InformatioAppViewController()
+    @objc func infoAppSelector() {
+        let informationAppViewController = LectureTwoMainViewController()
         navigationController?.pushViewController(informationAppViewController, animated: true)
     }
     
