@@ -14,6 +14,7 @@ class HandoutsViewController: UIViewController {
     var primaryCGColour: CGColor = CGColor(srgbRed: 0.0000, green: 0.53405, blue: 0.97520, alpha: 1.0000)
     var projectOneButton: UIButton!
     var projectTwoButton: UIButton!
+    var projectThreeButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +46,21 @@ class HandoutsViewController: UIViewController {
         
         view.addSubview(projectTwoButton)
         
+        viewSetupsForProjectThree()
+        
         setupConstraints()
+    }
+    
+    private func viewSetupsForProjectThree() {
+        projectThreeButton = UIButton()
+        projectThreeButton.setTitle("Project Three", for: .normal)
+        projectThreeButton.setTitleColor(primaryColour, for: .normal)
+        projectThreeButton.backgroundColor = .clear
+        projectThreeButton.layer.borderColor = primaryCGColour
+        projectThreeButton.layer.borderWidth = 1
+        
+        projectThreeButton.addTarget(self, action: #selector(projectThreeSelector), for: .touchUpInside)
+        self.view.addSubview(projectThreeButton)
     }
     
     func setupConstraints() {
@@ -60,6 +75,12 @@ class HandoutsViewController: UIViewController {
             projectTwoButton.topAnchor.constraint(equalTo: projectOneButton.bottomAnchor, constant: 8),
             projectTwoButton.widthAnchor.constraint(equalToConstant: 180)
         ])
+        
+        projectThreeButton.snp.makeConstraints { (make) in
+            make.top.equalTo(projectTwoButton.snp.bottom).offset(8)
+            make.left.equalTo(projectTwoButton.snp.left)
+            make.right.equalTo(projectTwoButton.snp.right)
+        }
     }
     
     @objc func projectOne() {
@@ -69,5 +90,10 @@ class HandoutsViewController: UIViewController {
     @objc func projectTwoSelector() {
         let projectTwoMainViewController = ProjectTwoMainViewController()
         navigationController?.pushViewController(projectTwoMainViewController, animated: true)
+    }
+    
+    @objc func projectThreeSelector() {
+        let projectThreeMainViewController = ProjectThreeMainViewController()
+        navigationController?.pushViewController(projectThreeMainViewController, animated: true)
     }
 }

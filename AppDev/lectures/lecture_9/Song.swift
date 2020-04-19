@@ -12,17 +12,17 @@ class Song: NSObject, Codable {
     var name: String
     var artist: String
     var album: String
-    var imageName: String
+    var image: UIImage?
     var isFavourite: Bool
     
-    init(name: String, artist: String, album: String, imageName: String, isFavourite: Bool) {
+    init(name: String, artist: String, album: String, image: UIImage, isFavourite: Bool) {
         self.name = name
         self.artist = artist
         self.album = album
-        self.imageName = imageName
+        self.image = image
         self.isFavourite = isFavourite
     }
-/*
+
     private enum CodingKeys: CodingKey {
         case name, artist, album, imageData, isFavourite
     }
@@ -31,6 +31,7 @@ class Song: NSObject, Codable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         name = try values.decode(String.self, forKey: .name)
         album = try values.decode(String.self, forKey: .album)
+        artist = try values.decode(String.self, forKey: .artist)
         isFavourite = try values.decode(Bool.self, forKey: .isFavourite)
         
         if let imageData = try values.decodeIfPresent(Data.self, forKey: .imageData) {
@@ -52,5 +53,4 @@ class Song: NSObject, Codable {
             try container.encode(imageData, forKey: .imageData)
         }
     }
-    */
 }

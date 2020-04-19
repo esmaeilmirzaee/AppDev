@@ -85,7 +85,10 @@ class DetailViewController: UIViewController {
         
         songImageView = UIImageView()
         songImageView.contentMode = .scaleAspectFill
-        songImageView.image = UIImage(imageLiteralResourceName: song.imageName)
+//        songImageView.image = UIImage(imageLiteralResourceName: song.imageName)
+        if let image = song.image {
+            songImageView.image = image
+        }
         
         view.addSubview(songImageView)
         

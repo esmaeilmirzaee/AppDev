@@ -12,13 +12,14 @@ class AlbumViewController: UIViewController {
 
     var playlistTableView: UITableView!
     var songs: [Song] = [Song]()
+    var detailed = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Songs"
         
         view.backgroundColor = .white
-        
+        detailed = false
         createSongs()
         setupViews()
         setupConstraints()
@@ -28,19 +29,41 @@ class AlbumViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        detailed = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if !detailed {
+            detailed = false
+            let lecturesMainViewController = LecturesMainViewController()
+            navigationController?.pushViewController(lecturesMainViewController, animated: false)
+        }
+    }
+    
     func createSongs() {
-        let song1 = Song(name: "Gang Related", artist: "Logic", album: "Under Pressure", imageName: "underpressure", isFavourite: false)
-        let song2 = Song(name: "Walk On Water (ft. Beyonce)",artist: "Eminem", album: "Revival", imageName: "revival" ,isFavourite: false)
-        let song3 = Song(name: "Camila", artist: "Camila Cabello", album: "Havana", imageName: "havana", isFavourite: false)
-        let song4 = Song(name: "First Day Out", artist: "Tee Grizzley", album: "My Moment", imageName: "mymoment", isFavourite: false)
-        let song5 = Song(name: "Liability", artist: "Lorde", album: "Melodrama", imageName: "melodrama", isFavourite: false)
-        let song6 = Song(name: "Honeymoon Avenue", artist: "Ariana Grande", album: "Yours Truly", imageName: "yourstruly", isFavourite: false)
-        let song7 = Song(name: "Mercy", artist: "Shawn Mendes", album: "Illuminate", imageName: "illuminate", isFavourite: false)
-        let song8 = Song(name: "One Call Away", artist: "Charlie Puth", album: "Nine Track Mind", imageName: "ninetrackmind", isFavourite: false)
-        let song9 = Song(name: "Midnight Train", artist: "Sam Smith", album: "The Thrill Of It All", imageName: "thrillofitall", isFavourite: false)
-        let song10 = Song(name: "Finesse", artist: "Bruno Mars", album: "24k Magic", imageName: "24kmagic", isFavourite: false)
+        let song1 = Song(name: "Gang Related", artist: "Logic", album: "Under Pressure", image: UIImage(imageLiteralResourceName: "underpressure"), isFavourite: false)
+        let song2 = Song(name: "Walk On Water (ft. Beyonce)",artist: "Eminem", album: "Revival", image: UIImage(imageLiteralResourceName: "revival"),isFavourite: false)
+        let song3 = Song(name: "Camila", artist: "Camila Cabello", album: "Havana", image: UIImage(imageLiteralResourceName: "havana"), isFavourite: false)
+        let song4 = Song(name: "First Day Out", artist: "Tee Grizzley", album: "My Moment", image: UIImage(imageLiteralResourceName: "mymoment"), isFavourite: false)
+        let song5 = Song(name: "Liability", artist: "Lorde", album: "Melodrama", image: UIImage(imageLiteralResourceName: "melodrama"), isFavourite: false)
+        let song6 = Song(name: "Honeymoon Avenue", artist: "Ariana Grande", album: "Yours Truly", image: UIImage(imageLiteralResourceName: "yourstruly"), isFavourite: false)
+        let song7 = Song(name: "Mercy", artist: "Shawn Mendes", album: "Illuminate", image: UIImage(imageLiteralResourceName: "illuminate"), isFavourite: false)
+        let song8 = Song(name: "One Call Away", artist: "Charlie Puth", album: "Nine Track Mind", image: UIImage(imageLiteralResourceName: "ninetrackmind"), isFavourite: false)
+        let song9 = Song(name: "Midnight Train", artist: "Sam Smith", album: "The Thrill Of It All", image: UIImage(imageLiteralResourceName: "thrillofitall"), isFavourite: false)
+        let song10 = Song(name: "Finesse", artist: "Bruno Mars", album: "24k Magic", image: UIImage(imageLiteralResourceName: "24kmagic"), isFavourite: false)
         
         songs = [song1, song2, song3, song4, song5, song6, song7, song8, song9, song10]
+        
+        if let storedFavourites = userDefaults.data(forKey: favouritesKey),
+            let favourites = try? decoder.decode([Song].self, from: storedFavourites) {
+            for song in songs {
+                if favourites.contains(where: { $0.name == song.name && $0.artist == song.artist }) {
+                    song.isFavourite = true
+                }
+            }
+        }
+        
     }
     
     func setupViews() {
@@ -87,6 +110,7 @@ extension AlbumViewController: UITableViewDataSource {
 
 extension AlbumViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        detailed = true
         let song = songs[indexPath.row]
         let detailVC = DetailViewController()
         detailVC.row = indexPath.row

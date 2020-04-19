@@ -95,7 +95,10 @@ class PlayListTableViewCell: UITableViewCell {
             favourite.setImage(UIImage(systemName: "heart"), for: .normal)
         }
         
-        songImageView.image = UIImage(imageLiteralResourceName: song.imageName)
+//        songImageView.image = UIImage(imageLiteralResourceName: song.imageName)
+        if let image = song.image {
+            songImageView.image = image
+        }
     }
     
     @objc func toggleFavourite() {

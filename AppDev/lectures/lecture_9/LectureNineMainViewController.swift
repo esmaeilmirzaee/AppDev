@@ -16,12 +16,7 @@ class LectureNineMainViewController: UIViewController {
         title = "Lecture NINE"
         
         view.backgroundColor = .white
-        let lecturesMainViewController = LecturesMainViewController()
-        navigationController?.pushViewController(lecturesMainViewController, animated: false)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
         let albumViewController = AlbumViewController()
-        navigationController?.pushViewController(albumViewController, animated: false)
+        navigationController?.pushViewController(albumViewController, animated: true)
     }
 }

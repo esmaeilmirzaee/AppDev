@@ -16,7 +16,7 @@ import GoogleSignIn
  TODO: Create the UserDefaults object
  */
 let userDefaults = UserDefaults.standard
-
+let favouritesKey = "favourites"
 /*
  Lecture 9:
  TODO: JSONEncoder & JSONDecoder

@@ -53,6 +53,7 @@
 		DA9A63E824482BBA0018163F /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9A63E724482BBA0018163F /* Song.swift */; };
 		DA9B267C243DFB09008FB0D1 /* LectureFourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9B267B243DFB09008FB0D1 /* LectureFourViewController.swift */; };
 		DA9B2680243E0358008FB0D1 /* LecturesMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9B267F243E0358008FB0D1 /* LecturesMainViewController.swift */; };
+		DAB79F17244B0EB7007972FB /* ProjectThreeMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB79F16244B0EB7007972FB /* ProjectThreeMainViewController.swift */; };
 		DAC794EF2442F308007DDC17 /* LectureSixCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC794EE2442F308007DDC17 /* LectureSixCellTableViewCell.swift */; };
 		DAC794F12442F368007DDC17 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC794F02442F368007DDC17 /* Course.swift */; };
 		DAC794F32442F55E007DDC17 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC794F22442F55E007DDC17 /* NetworkManager.swift */; };
@@ -111,6 +112,7 @@
 		DA9A63E724482BBA0018163F /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		DA9B267B243DFB09008FB0D1 /* LectureFourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureFourViewController.swift; sourceTree = "<group>"; };
 		DA9B267F243E0358008FB0D1 /* LecturesMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LecturesMainViewController.swift; sourceTree = "<group>"; };
+		DAB79F16244B0EB7007972FB /* ProjectThreeMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectThreeMainViewController.swift; sourceTree = "<group>"; };
 		DAC794EE2442F308007DDC17 /* LectureSixCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureSixCellTableViewCell.swift; sourceTree = "<group>"; };
 		DAC794F02442F368007DDC17 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		DAC794F22442F55E007DDC17 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -336,6 +338,14 @@
 			path = lectures;
 			sourceTree = "<group>";
 		};
+		DAB79F18244B0EC0007972FB /* project_three */ = {
+			isa = PBXGroup;
+			children = (
+				DAB79F16244B0EB7007972FB /* ProjectThreeMainViewController.swift */,
+			);
+			path = project_three;
+			sourceTree = "<group>";
+		};
 		DAD464E324439827002A58C3 /* lecture_8 */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,6 +365,7 @@
 				DAEACFA5243D253200E17B9C /* HandoutsViewController.swift */,
 				DA2ADA23243D9C2F0018F658 /* project_one */,
 				DA2ADA26243DA0E40018F658 /* project_two */,
+				DAB79F18244B0EC0007972FB /* project_three */,
 			);
 			path = handouts;
 			sourceTree = "<group>";
@@ -494,6 +505,7 @@
 			files = (
 				DA1D9D8F244845EB006FA1E1 /* UIColor+Shared.swift in Sources */,
 				DA91296C2446F6DE002BF112 /* LectureNineMainViewController.swift in Sources */,
+				DAB79F17244B0EB7007972FB /* ProjectThreeMainViewController.swift in Sources */,
 				DAC794F12442F368007DDC17 /* Course.swift in Sources */,
 				DA1D9D8D24483C9D006FA1E1 /* PlayListTableViewCell.swift in Sources */,
 				DA773ED1243C659F00336780 /* AppViewController.swift in Sources */,
