@@ -19,7 +19,7 @@ class ProjectThreeMainViewController: UIViewController {
         view.backgroundColor = .white
         
         greenView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 100))
-        greenView.backgroundColor = .gray
+        greenView.backgroundColor = .systemGreen
         view.addSubview(greenView)
         
         setupConstraints()
