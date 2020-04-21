@@ -18,11 +18,14 @@ class ProjectThreeMainViewController: UIViewController {
         title = "Project Three"
         view.backgroundColor = .white
         
-        greenView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 100))
+        setupViews()
+        setupConstraints()
+    }
+    
+    private func setupViews() {
+        greenView = UIView(frame: CGRect(x: 0, y: 500, width: 50, height: 100))
         greenView.backgroundColor = .systemGreen
         view.addSubview(greenView)
-        
-        setupConstraints()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
