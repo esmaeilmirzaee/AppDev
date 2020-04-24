@@ -1,4 +1,4 @@
-# iOS Development Course in Cornell University
+#  iOS Development Course in Cornell University
 > The current application is the app I developed and experenced when I took the course. Although each lecture has its own application, I developed a single application to move around to each lecture's app. (img/a--dev_mockup.gif)[img/appdev_mockup.gif] is the app graphical design by me using `Adobe Photoshop`, `Adobe illustrator`, `Sketch` and `Adobe after effects`.
 
 In XCode 10, delete storyboard and remove its key-value from appplist. Then in `AppDelegate` {`func scene`} method.
